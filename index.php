@@ -1,5 +1,5 @@
 <?php
-require_once 'database/db_connect.php';
+require_once 'database/db_connect_env.php';
 
 // Buscar categoria selecionada
 $categoria_id = $_GET['categoria'] ?? '';

@@ -1,5 +1,5 @@
 <?php
-require_once 'database/db_connect.php';
+require_once 'database/db_connect_env.php';
 
 // Função para log de debug
 function debug_log($message) {

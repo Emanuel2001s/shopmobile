@@ -1,5 +1,5 @@
 <?php
-require_once '../database/db_connect.php';
+require_once '../database/db_connect_env.php';
 
 echo "<h2>Teste da Lógica de Salvamento (Versão Simplificada)</h2>";
 

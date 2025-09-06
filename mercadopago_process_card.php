@@ -1,5 +1,5 @@
 <?php
-require_once 'database/db_connect.php';
+require_once 'database/db_connect_env.php';
 
 // Receber dados do POST
 $input = json_decode(file_get_contents('php://input'), true);

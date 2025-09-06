@@ -1,5 +1,5 @@
 <?php
-require_once 'database/db_connect.php';
+require_once 'database/db_connect_env.php';
 
 /**
  * Script de Cron Job para verificar pagamentos pendentes do Mercado Pago

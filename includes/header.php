@@ -4,7 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once 'database/db_connect.php';
+require_once 'database/db_connect_env.php';
 require_once 'include/cart_functions.php';
 
 // Buscar configurações da loja

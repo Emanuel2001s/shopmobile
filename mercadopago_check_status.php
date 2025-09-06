@@ -1,5 +1,5 @@
 <?php
-require_once 'database/db_connect.php';
+require_once 'database/db_connect_env.php';
 
 // Verificar se foi passado o ID do pedido
 $pedido_id = intval($_GET['pedido_id'] ?? 0);

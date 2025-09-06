@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../includes/auth.php';
-require_once '../database/db_connect.php';
+require_once '../database/db_connect_env.php';
 
 // Verificar se o usuário está logado
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {

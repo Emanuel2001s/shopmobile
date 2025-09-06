@@ -45,7 +45,7 @@ function needsUpdate() {
 // Função para verificar mudanças no banco
 function hasChanges() {
     try {
-        require_once 'database/db_connect.php';
+        require_once 'database/db_connect_env.php';
         
         $sitemap_file = 'sitemap.xml';
         $sitemap_time = file_exists($sitemap_file) ? filemtime($sitemap_file) : 0;

@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 require_once '../includes/auth.php';
-require_once '../database/db_connect.php';
+require_once '../database/db_connect_env.php';
 
 checkAdminAuth();
 

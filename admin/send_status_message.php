@@ -5,7 +5,7 @@ if (!defined('ADMIN_ACCESS') && basename($_SERVER['SCRIPT_NAME']) === basename(_
     exit('Acesso negado');
 }
 
-require_once '../database/db_connect.php';
+require_once '../database/db_connect_env.php';
 
 function debug_log($message) {
     $log_file = '../debug_status_message.log';

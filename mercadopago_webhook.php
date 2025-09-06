@@ -1,5 +1,5 @@
 <?php
-require_once 'database/db_connect.php';
+require_once 'database/db_connect_env.php';
 
 // Log do webhook
 error_log("Webhook Mercado Pago recebido: " . json_encode($_POST));

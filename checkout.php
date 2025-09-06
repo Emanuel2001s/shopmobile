@@ -1,6 +1,6 @@
 <?php
 require_once 'php_error_reporting.php';
-require_once 'database/db_connect.php';
+require_once 'database/db_connect_env.php';
 require_once 'include/cart_functions.php';
 
 // Inicia a sessão se ainda não estiver iniciada

@@ -15,9 +15,9 @@ try {
         exit;
     }
     
-    if (file_exists('../database/db_connect.php')) {
+    if (file_exists('../database/db_connect_env.php')) {
         echo "<p>✅ db_connect.php existe</p>";
-        require_once '../database/db_connect.php';
+        require_once '../database/db_connect_env.php';
         echo "<p>✅ db_connect.php incluído</p>";
     } else {
         echo "<p>❌ db_connect.php não existe</p>";

@@ -5,7 +5,7 @@
  */
 
 // Incluir conexão com banco de dados ANTES de definir headers
-require_once 'database/db_connect.php';
+require_once 'database/db_connect_env.php';
 
 // Configurações do sitemap
 $base_url = 'https://' . $_SERVER['HTTP_HOST']; // Ajuste conforme necessário

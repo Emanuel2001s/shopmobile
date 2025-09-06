@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../database/db_connect.php';
+require_once '../database/db_connect_env.php';
 
 // Se já estiver logado, redireciona para o dashboard
 if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
