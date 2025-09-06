@@ -1,65 +1,65 @@
-# Use PHP 8.1 with Apache
+# Dockerfile otimizado para ShopMobile
+# Corrige problemas identificados nos logs do Dokploy
+
 FROM php:8.1-apache
 
-# Install system dependencies
+# Instalar extensões PHP necessárias
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
     libzip-dev \
-    libicu-dev \
-    libonig-dev \
-    curl \
-    zip \
     unzip \
-    git \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql mysqli zip \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Configure and install PHP extensions
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) \
-        gd \
-        pdo \
-        pdo_mysql \
-        mysqli \
-        zip \
-        intl \
-        mbstring \
-        opcache
+# Habilitar mod_rewrite e outros módulos Apache necessários
+RUN a2enmod rewrite expires deflate headers
 
-# Enable Apache modules
-RUN a2enmod rewrite headers
+# Copiar configuração Apache personalizada
+COPY apache-config.conf /etc/apache2/conf-available/shopmobile.conf
+RUN a2enconf shopmobile
 
-# Set working directory
+# Definir ServerName globalmente para evitar warnings
+RUN echo "ServerName shopmobile-app" >> /etc/apache2/apache2.conf
+
+# Configurar diretório de trabalho
 WORKDIR /var/www/html
 
-# Copy application files
+# Copiar arquivos da aplicação
 COPY . /var/www/html/
 
-# Set proper permissions
-RUN chown -R www-data:www-data /var/www/html \
+# Criar diretórios necessários e definir permissões
+RUN mkdir -p /var/www/html/uploads \
+    && chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html \
     && chmod -R 777 /var/www/html/uploads
 
-# Create uploads directory if it doesn't exist
-RUN mkdir -p /var/www/html/uploads/sliders \
-    && chown -R www-data:www-data /var/www/html/uploads \
-    && chmod -R 777 /var/www/html/uploads
+# Criar diretórios de log
+RUN mkdir -p /var/log/apache2 \
+    && touch /var/log/apache2/shopmobile_error.log \
+    && touch /var/log/apache2/shopmobile_access.log \
+    && touch /var/log/apache2/php_errors.log \
+    && chown www-data:www-data /var/log/apache2/*.log
 
-# Configure PHP
-RUN echo "upload_max_filesize = 10M" >> /usr/local/etc/php/conf.d/uploads.ini \
-    && echo "post_max_size = 10M" >> /usr/local/etc/php/conf.d/uploads.ini \
-    && echo "max_execution_time = 300" >> /usr/local/etc/php/conf.d/uploads.ini \
-    && echo "memory_limit = 256M" >> /usr/local/etc/php/conf.d/uploads.ini
+# Configurações PHP personalizadas
+RUN echo "display_errors = Off" >> /usr/local/etc/php/conf.d/custom.ini \
+    && echo "log_errors = On" >> /usr/local/etc/php/conf.d/custom.ini \
+    && echo "error_log = /var/log/apache2/php_errors.log" >> /usr/local/etc/php/conf.d/custom.ini \
+    && echo "upload_max_filesize = 10M" >> /usr/local/etc/php/conf.d/custom.ini \
+    && echo "post_max_size = 10M" >> /usr/local/etc/php/conf.d/custom.ini \
+    && echo "max_execution_time = 300" >> /usr/local/etc/php/conf.d/custom.ini \
+    && echo "memory_limit = 256M" >> /usr/local/etc/php/conf.d/custom.ini
 
-# Configure Apache
-RUN echo "<Directory /var/www/html>" >> /etc/apache2/apache2.conf \
-    && echo "    AllowOverride All" >> /etc/apache2/apache2.conf \
-    && echo "    Require all granted" >> /etc/apache2/apache2.conf \
-    && echo "</Directory>" >> /etc/apache2/apache2.conf
+# Remover arquivos desnecessários
+RUN rm -f /var/www/html/Dockerfile \
+    && rm -f /var/www/html/docker-compose.yml \
+    && rm -f /var/www/html/.dockerignore
 
-# Expose port 80
+# Expor porta 80
 EXPOSE 80
 
-# Start Apache
+# Comando para iniciar Apache
 CMD ["apache2-foreground"]
