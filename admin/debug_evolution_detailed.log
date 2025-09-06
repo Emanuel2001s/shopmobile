@@ -1,0 +1,18 @@
+2025-08-21 20:45:40 - Iniciando requisição - {"action":"status","instance_id":"","instance_name":"null"}
+2025-08-21 20:45:40 - Ação: Verificar status - {"instance_id":"","instance_name":""}
+2025-08-21 20:45:40 - Nenhuma instância no banco, retornando status desconectado
+2025-08-21 20:45:45 - Iniciando requisição - {"action":"status","instance_id":"","instance_name":"null"}
+2025-08-21 20:45:45 - Ação: Verificar status - {"instance_id":"","instance_name":""}
+2025-08-21 20:45:45 - Nenhuma instância no banco, retornando status desconectado
+2025-08-21 20:45:50 - Iniciando requisição - {"action":"status","instance_id":"","instance_name":"null"}
+2025-08-21 20:45:50 - Ação: Verificar status - {"instance_id":"","instance_name":""}
+2025-08-21 20:45:50 - Nenhuma instância no banco, retornando status desconectado
+2025-08-21 20:45:55 - Iniciando requisição - {"action":"status","instance_id":"","instance_name":"null"}
+2025-08-21 20:45:55 - Ação: Verificar status - {"instance_id":"","instance_name":""}
+2025-08-21 20:45:55 - Nenhuma instância no banco, retornando status desconectado
+2025-08-21 20:46:00 - Iniciando requisição - {"action":"status","instance_id":"","instance_name":"null"}
+2025-08-21 20:46:00 - Ação: Verificar status - {"instance_id":"","instance_name":""}
+2025-08-21 20:46:00 - Nenhuma instância no banco, retornando status desconectado
+2025-08-21 20:46:49 - Iniciando requisição - {"action":"status","instance_id":"","instance_name":"null"}
+2025-08-21 20:46:49 - Ação: Verificar status - {"instance_id":"","instance_name":""}
+2025-08-21 20:46:49 - Nenhuma instância no banco, retornando status desconectado
